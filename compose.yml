@@ -1,0 +1,40 @@
+services:
+  mysql_db:
+    container_name: mysql_db_container
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: "$MYSQL_ROOT_PW"
+      MYSQL_DATABASE: "$MYSQL_DB"
+      MYSQL_USER: "$MYSQL_UNAME"
+      MYSQL_PASSWORD: "$MYSQL_USER_PW"
+    networks:
+      - mywpnetwork
+
+    volumes:
+      - db_vol:/var/lib/mysql
+
+  web_service:
+    container_name: wp_container
+    depends_on:
+      - mysql_db
+    image: wordpress
+    restart: always
+    ports:
+      - "4000:80"
+    environment:
+      WORDPRESS_DB_HOST: "mysql_db"
+      WORDPRESS_DB_USER: "$MYSQL_UNAME"
+      WORDPRESS_DB_PASSWORD: "$MYSQL_USER_PW"
+      WORDPRESS_DB_NAME: "$MYSQL_DB_NAME"
+    networks:
+      - mywpnetwork
+
+    volumes:
+      - wordpress_vol:/var/www/html
+
+networks:
+  mywpnetwork:
+volumes:
+  wordpress_vol:
+  db_vol:
