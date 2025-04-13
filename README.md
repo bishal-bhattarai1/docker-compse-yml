@@ -10,4 +10,5 @@ root@ubuntu2004:/home/vagrant/wp# docker compose up
 
 Go to the browser and enter the IP address obtained from the operating system, followed by the port number.
 
-<img width="1189" alt="image" src="https://github.com/user-attachments/assets/4d229255-5b15-4fca-b33b-7020494f34b1" />
+<img width="1218" alt="image" src="https://github.com/user-attachments/assets/17434557-4c99-4f69-96c7-157866220232" />
+
